@@ -12,8 +12,12 @@ describe "chainning robot commands" do
 
   it "sets instance variables to last place call" do
     floating_robot = Robot.new
-    floating_robot.place(1, 2, :NORTH).left.right.move.place(2, 3, :NORTH)
+    allow(STDOUT).to receive(:puts).with("1, 2, SOUTH")
+    allow(STDOUT).to receive(:puts).with("2, 3, NORTH")
+    floating_robot.place(1, 2, :SOUTH).report.left.move.right.move.place(2, 3, :NORTH).report
 
+    expect(STDOUT).to have_received(:puts).with("1, 2, SOUTH")
+    expect(STDOUT).to have_received(:puts).with("2, 3, NORTH")
     expect(floating_robot.x).to eq 2
     expect(floating_robot.y).to eq 3
     expect(floating_robot.direction).to eq :NORTH
@@ -21,9 +25,11 @@ describe "chainning robot commands" do
 
   it "can chain mulitple commands" do
     floating_robot = Robot.new
-    location = floating_robot.place(1, 2, :NORTH).left.right.move.report
+    allow(STDOUT).to receive(:puts).with("1, 3, NORTH")
 
-    expect(location).to eq "1, 3, NORTH"
+    floating_robot.place(1, 2, :NORTH).left.right.move.report
+
+    expect(STDOUT).to have_received(:puts).with("1, 3, NORTH")
     expect(floating_robot.x).to eq 1
     expect(floating_robot.y).to eq 3
     expect(floating_robot.direction).to eq :NORTH
