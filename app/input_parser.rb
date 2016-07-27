@@ -1,13 +1,15 @@
 class InputParser
+  attr_accessor :command_array
+
   def initialize(robot)
     @robot = robot
   end
 
-  def parse(command)
-    command.downcase.split(' ')
+  def parse(command_input)
+    @command_array = command_input.downcase.split(' ')
   end
 
-  def run(command_array)
+  def run
     loop do
       command = command_array.shift
 

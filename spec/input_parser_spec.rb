@@ -28,9 +28,12 @@ describe InputParser do
       allow(STDOUT).to receive(:puts).with("0, 0, WEST")
       allow(STDOUT).to receive(:puts).with("3, 3, NORTH")
 
-      parser.run(one_command_array)
-      parser.run(two_command_array)
-      parser.run(three_command_array)
+      parser.command_array = one_command_array
+      parser.run
+      parser.command_array = two_command_array
+      parser.run
+      parser.command_array = three_command_array
+      parser.run
 
       expect(STDOUT).to have_received(:puts).with("0, 1, NORTH")
       expect(STDOUT).to have_received(:puts).with("0, 0, WEST")
