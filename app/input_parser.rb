@@ -1,5 +1,6 @@
 class InputParser
   attr_accessor :command_array
+  VALID_COMMANDS = %w(place left right move report)
 
   def initialize(robot)
     @robot = robot
@@ -12,6 +13,7 @@ class InputParser
   def run
     loop do
       command = command_array.shift
+      next unless VALID_COMMANDS.include? command
 
       if command == 'place'
         place_arguments = command_array.shift

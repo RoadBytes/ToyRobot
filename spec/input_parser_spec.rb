@@ -19,9 +19,9 @@ describe InputParser do
 
   describe "#run" do
     it "executes a command_array on a Robot" do
-      parser        = InputParser.new(Robot.new)
-      one_command_array = ["place", "0,0,north", "move", "report"]
-      two_command_array = ["place", "0,0,north", "left", "report"]
+      parser              = InputParser.new(Robot.new)
+      one_command_array   = ["place", "0,0,north", "move", "report"]
+      two_command_array   = ["place", "0,0,north", "left", "report"]
       three_command_array = ["place", "1,2,east", "move", "move", "left", "move", "report"]
 
       allow(STDOUT).to receive(:puts).with("0, 1, NORTH")
