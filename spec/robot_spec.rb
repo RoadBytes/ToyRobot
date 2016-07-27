@@ -85,5 +85,107 @@ describe Robot do
         expect(robot.direction).to eq :NORTH
       end
     end
+
+    describe "#move" do
+      it "adds one to x when facing :EAST" do
+        east_robot = Robot.new
+        east_robot.place(1, 1, :EAST)
+
+        east_robot.move
+
+        expect(east_robot.x).to eq 2
+        expect(east_robot.y).to eq 1
+        expect(east_robot.direction).to eq :EAST
+      end
+
+      it "subtracts one to x when facing :WEST" do
+        east_robot = Robot.new
+        east_robot.place(1, 1, :WEST)
+
+        east_robot.move
+
+        expect(east_robot.x).to eq 0
+        expect(east_robot.y).to eq 1
+        expect(east_robot.direction).to eq :WEST
+      end
+
+      it "adds one to y when facing :NORTH" do
+        east_robot = Robot.new
+        east_robot.place(1, 1, :NORTH)
+
+        east_robot.move
+
+        expect(east_robot.x).to eq 1
+        expect(east_robot.y).to eq 2
+        expect(east_robot.direction).to eq :NORTH
+      end
+
+      it "subtracts one to y when facing :SOUTH" do
+        east_robot = Robot.new
+        east_robot.place(1, 1, :SOUTH)
+
+        east_robot.move
+
+        expect(east_robot.x).to eq 1
+        expect(east_robot.y).to eq 0
+        expect(east_robot.direction).to eq :SOUTH
+      end
+
+      context "when #move is invalid" do
+        it "leaves the robot unchanged if moving out of bounds east" do
+          east_robot = Robot.new
+          east_robot.place(4, 2, :EAST)
+
+          east_robot.move
+
+          expect(east_robot.x).to eq 4
+          expect(east_robot.y).to eq 2
+          expect(east_robot.direction).to eq :EAST
+        end
+
+        it "leaves the robot unchanged if moving out of bounds west" do
+          east_robot = Robot.new
+          east_robot.place(0, 2, :WEST)
+
+          east_robot.move
+
+          expect(east_robot.x).to eq 0
+          expect(east_robot.y).to eq 2
+          expect(east_robot.direction).to eq :WEST
+        end
+
+        it "leaves the robot unchanged if moving out of bounds north" do
+          east_robot = Robot.new
+          east_robot.place(3, 4, :NORTH)
+
+          east_robot.move
+
+          expect(east_robot.x).to eq 3
+          expect(east_robot.y).to eq 4
+          expect(east_robot.direction).to eq :NORTH
+        end
+
+        it "leaves the robot unchanged if moving out of bounds south" do
+          east_robot = Robot.new
+          east_robot.place(3, 0, :SOUTH)
+
+          east_robot.move
+
+          expect(east_robot.x).to eq 3
+          expect(east_robot.y).to eq 0
+          expect(east_robot.direction).to eq :SOUTH
+        end
+
+        it "leaves the robot unchanged if not on table" do
+          floating_robot = Robot.new
+
+          floating_robot.move
+
+          expect(floating_robot.x).to eq nil
+          expect(floating_robot.y).to eq nil
+          expect(floating_robot.direction).to eq nil
+        end
+      end
+    end
   end
 end
