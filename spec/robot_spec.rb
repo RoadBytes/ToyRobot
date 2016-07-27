@@ -2,17 +2,23 @@ require_relative "../app/robot.rb"
 
 describe Robot do
   describe "#report" do
-    it "sends 'not on table' if `place` hasn't been called" do
+    it "doesn't puts if `place` hasn't been called" do
       floating_robot = Robot.new
+      allow(STDOUT).to receive(:puts)
 
-      expect(floating_robot.report).to eq ""
+      floating_robot.report
+
+      expect(STDOUT).not_to have_received(:puts)
     end
 
-    it "sends coordinates from `place` call" do
+    it "puts coordinates from `place` call" do
       placed_robot = Robot.new
       placed_robot.place(0, 1, :NORTH)
+      allow(STDOUT).to receive(:puts).with("0, 1, NORTH")
 
-      expect(placed_robot.report).to eq "0, 1, NORTH"
+      placed_robot.report
+
+      expect(STDOUT).to have_received(:puts).with("0, 1, NORTH")
     end
   end
 

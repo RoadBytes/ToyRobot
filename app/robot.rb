@@ -5,16 +5,18 @@ class Robot
   # (0, 0) south west most corner of square table
 
   def place(x, y, direction)
-    return unless DIRECTIONS.include? direction
-    return unless coordinates_in_bounds(x, y)
+    return self unless DIRECTIONS.include? direction
+    return self unless coordinates_in_bounds(x, y)
     @x         = x
     @y         = y
     @direction = direction
+    self
   end
 
   def report
-    return "" if robot_not_set
-    "#{x}, #{y}, #{direction}"
+    return self if robot_not_set
+    puts "#{x}, #{y}, #{direction}"
+    self
   end
 
   def move
@@ -26,7 +28,7 @@ class Robot
   end
 
   def left
-    return if robot_not_set
+    return self if robot_not_set
     index = DIRECTIONS.index(direction)
     new_index = (index + 1) % DIRECTIONS.size
     self.direction = DIRECTIONS[new_index]
@@ -34,7 +36,7 @@ class Robot
   end
 
   def right
-    return if robot_not_set
+    return self if robot_not_set
     index = DIRECTIONS.index(direction)
     new_index = index - 1
     self.direction = DIRECTIONS[new_index]
