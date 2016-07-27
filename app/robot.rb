@@ -1,7 +1,9 @@
 class Robot
   attr_accessor :x, :y, :direction
-  DIRECTIONS = [:SOUTH, :EAST, :NORTH, :WEST]
-  TABLE_SIZE = 5
+
+  DIRECTIONS    = [:SOUTH, :EAST, :NORTH, :WEST]
+  USER_COMMANDS = %w(place report move left right)
+  TABLE_SIZE    = 5
   # (0, 0) south west most corner of square table
 
   def place(x, y, direction)

@@ -1,6 +1,6 @@
 class InputParser
   attr_accessor :command_array
-  VALID_COMMANDS = %w(place left right move report)
+  VALID_COMMANDS = Robot::USER_COMMANDS
 
   def initialize(robot)
     @robot = robot
@@ -12,21 +12,27 @@ class InputParser
 
   def run
     loop do
+      break if command_array.empty?
+
       command = command_array.shift
       next unless VALID_COMMANDS.include? command
 
-      if command == 'place'
-        place_arguments = command_array.shift
-        place_arguments = place_arguments.split(',')
-        @robot.send command,
-          place_arguments[0].to_i,
-          place_arguments[1].to_i,
-          place_arguments[2].upcase.to_sym
-      else
-        @robot.send command
-      end
+      execute(command)
+    end
+  end
 
-      break if command_array.empty?
+  private
+
+  def execute(command)
+    if command == 'place'
+      place_arguments = command_array.shift
+      place_arguments = place_arguments.split(',')
+      @robot.send command,
+        place_arguments[0].to_i,
+        place_arguments[1].to_i,
+        place_arguments[2].upcase.to_sym
+    else
+      @robot.send command
     end
   end
 end
