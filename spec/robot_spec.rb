@@ -188,4 +188,106 @@ describe Robot do
       end
     end
   end
+
+  describe "#left" do
+    it "does nothing if the robot hasn't been placed" do
+      floating_robot = Robot.new
+      floating_robot.left
+
+      expect(floating_robot.x).to eq nil
+      expect(floating_robot.y).to eq nil
+      expect(floating_robot.direction).to eq nil
+    end
+
+    it "changes direction from south to east" do
+      floating_robot = Robot.new
+      floating_robot.place(3, 2, :SOUTH)
+      floating_robot.left
+
+      expect(floating_robot.x).to eq 3
+      expect(floating_robot.y).to eq 2
+      expect(floating_robot.direction).to eq :EAST
+    end
+
+    it "changes direction from EAST to north" do
+      floating_robot = Robot.new
+      floating_robot.place(3, 2, :EAST)
+      floating_robot.left
+
+      expect(floating_robot.x).to eq 3
+      expect(floating_robot.y).to eq 2
+      expect(floating_robot.direction).to eq :NORTH
+    end
+
+    it "changes direction from north to west" do
+      floating_robot = Robot.new
+      floating_robot.place(3, 2, :NORTH)
+      floating_robot.left
+
+      expect(floating_robot.x).to eq 3
+      expect(floating_robot.y).to eq 2
+      expect(floating_robot.direction).to eq :WEST
+    end
+
+    it "changes direction from east to south" do
+      floating_robot = Robot.new
+      floating_robot.place(3, 2, :WEST)
+      floating_robot.left
+
+      expect(floating_robot.x).to eq 3
+      expect(floating_robot.y).to eq 2
+      expect(floating_robot.direction).to eq :SOUTH
+    end
+  end
+
+  describe "#right" do
+    it "does nothing if the robot hasn't been placed" do
+      floating_robot = Robot.new
+      floating_robot.right
+
+      expect(floating_robot.x).to eq nil
+      expect(floating_robot.y).to eq nil
+      expect(floating_robot.direction).to eq nil
+    end
+
+    it "changes direction from south to west" do
+      floating_robot = Robot.new
+      floating_robot.place(3, 2, :SOUTH)
+      floating_robot.right
+
+      expect(floating_robot.x).to eq 3
+      expect(floating_robot.y).to eq 2
+      expect(floating_robot.direction).to eq :WEST
+    end
+
+    it "changes direction from west to north" do
+      floating_robot = Robot.new
+      floating_robot.place(3, 2, :WEST)
+      floating_robot.right
+
+      expect(floating_robot.x).to eq 3
+      expect(floating_robot.y).to eq 2
+      expect(floating_robot.direction).to eq :NORTH
+    end
+
+    it "changes direction from north to east" do
+      floating_robot = Robot.new
+      floating_robot.place(3, 2, :NORTH)
+      floating_robot.right
+
+      expect(floating_robot.x).to eq 3
+      expect(floating_robot.y).to eq 2
+      expect(floating_robot.direction).to eq :EAST
+    end
+
+    it "changes direction from east to south" do
+      floating_robot = Robot.new
+      floating_robot.place(3, 2, :EAST)
+      floating_robot.right
+
+      expect(floating_robot.x).to eq 3
+      expect(floating_robot.y).to eq 2
+      expect(floating_robot.direction).to eq :SOUTH
+    end
+  end
 end

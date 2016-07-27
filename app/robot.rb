@@ -1,6 +1,6 @@
 class Robot
   attr_accessor :x, :y, :direction
-  DIRECTIONS = [:NORTH, :SOUTH, :EAST, :WEST]
+  DIRECTIONS = [:SOUTH, :EAST, :NORTH, :WEST]
   TABLE_SIZE = 5
   # (0, 0) south west most corner of square table
 
@@ -22,6 +22,22 @@ class Robot
     self.x -= 1 if west? and not_on_west_edge?
     self.y += 1 if north? and not_on_north_edge?
     self.y -= 1 if south? and not_on_south_edge?
+    self
+  end
+
+  def left
+    return if robot_not_set
+    index = DIRECTIONS.index(direction)
+    new_index = (index + 1) % DIRECTIONS.size
+    self.direction = DIRECTIONS[new_index]
+    self
+  end
+
+  def right
+    return if robot_not_set
+    index = DIRECTIONS.index(direction)
+    new_index = index - 1
+    self.direction = DIRECTIONS[new_index]
     self
   end
 
