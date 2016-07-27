@@ -5,12 +5,12 @@ describe Robot do
     it "sends 'not on table' if `place` hasn't been called" do
       floating_robot = Robot.new
 
-      expect(floating_robot.report).to eq "I'm not on the table"
+      expect(floating_robot.report).to eq ""
     end
 
     it "sends coordinates from `place` call" do
       placed_robot = Robot.new
-      placed_robot.place(0, 0, :NORTH)
+      placed_robot.place(0, 1, :NORTH)
 
       expect(placed_robot.report).to eq "0, 1, NORTH"
     end
@@ -80,9 +80,9 @@ describe Robot do
 
         robot.place(0, 6, :CALI)
 
-        expect(robot.x).to eq nil
-        expect(robot.y).to eq nil
-        expect(robot.direction).to eq nil
+        expect(robot.x).to eq 0
+        expect(robot.y).to eq 1
+        expect(robot.direction).to eq :NORTH
       end
     end
   end

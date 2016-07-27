@@ -2,24 +2,29 @@ class Robot
   attr_reader :x, :y, :direction
   DIRECTIONS = [:NORTH, :SOUTH, :EAST, :WEST]
   TABLE_SIZE = 5
+  # (0, 0) south west most corner of square table
 
   def place(x, y, direction)
     return unless DIRECTIONS.include? direction
-    return unless robot_in_bounds
+    return unless coordinates_in_bounds(x, y)
     @x         = x
     @y         = y
     @direction = direction
   end
 
   def report
-    "I'm not on the table"
+    return "" if robot_not_set
+    "#{x}, #{y}, #{direction}"
   end
 
   private
 
-  def robot_in_bounds
-    return false if x.nil? or y.nil?
+  def coordinates_in_bounds(x, y)
     x < TABLE_SIZE and y < TABLE_SIZE and
-    x > 0 and y > 0
+    x >= 0 and y >= 0
+  end
+
+  def robot_not_set
+    x.nil? or y.nil? or direction.nil?
   end
 end
