@@ -1,11 +1,14 @@
 require_relative 'robot.rb'
 require_relative 'input_parser.rb'
+require_relative 'board.rb'
 
 # Handles O/I from terminal
 class TerminalManager
-  attr_reader :input_parser
+  attr_reader :input_parser, :board
   def initialize
-    @input_parser = InputParser.new(Robot.new)
+    @robot        = Robot.new
+    @input_parser = InputParser.new(@robot)
+    @board        = Board.new(@robot)
   end
 
   def play
@@ -42,6 +45,8 @@ class TerminalManager
 
     input_parser.parse(command_string)
     input_parser.run
+
+    puts board.return_board
     puts
   end
 end
