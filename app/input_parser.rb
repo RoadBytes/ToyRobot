@@ -1,3 +1,5 @@
+# InputParser handles string input from user and
+# breaks it into commands for Robot
 class InputParser
   attr_accessor :command_array
   VALID_COMMANDS = Robot::USER_COMMANDS
@@ -28,9 +30,9 @@ class InputParser
       place_arguments = command_array.shift
       place_arguments = place_arguments.split(',')
       @robot.send command,
-        place_arguments[0].to_i,
-        place_arguments[1].to_i,
-        place_arguments[2].upcase.to_sym
+                  place_arguments[0].to_i,
+                  place_arguments[1].to_i,
+                  place_arguments[2].upcase.to_sym
     else
       @robot.send command
     end

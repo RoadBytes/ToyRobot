@@ -1,8 +1,9 @@
+# Robot object impelemented to specs
 class Robot
   attr_accessor :x, :y, :direction
 
-  DIRECTIONS    = [:SOUTH, :EAST, :NORTH, :WEST]
-  USER_COMMANDS = %w(place report move left right)
+  DIRECTIONS    = [:SOUTH, :EAST, :NORTH, :WEST].freeze
+  USER_COMMANDS = %w(place report move left right).freeze
   TABLE_SIZE    = 5
   # (0, 0) south west most corner of square table
 
@@ -21,13 +22,15 @@ class Robot
     self
   end
 
+  # rubocop:disable Metrics/PerceivedComplexity
   def move
-    self.x += 1 if east? and not_on_east_edge?
-    self.x -= 1 if west? and not_on_west_edge?
-    self.y += 1 if north? and not_on_north_edge?
-    self.y -= 1 if south? and not_on_south_edge?
+    self.x += 1 if east? && not_on_east_edge?
+    self.x -= 1 if west? && not_on_west_edge?
+    self.y += 1 if north? && not_on_north_edge?
+    self.y -= 1 if south? && not_on_south_edge?
     self
   end
+  # rubocop:enable Metrics/PerceivedComplexity
 
   def left
     return self if robot_not_set
@@ -48,12 +51,12 @@ class Robot
   private
 
   def coordinates_in_bounds(x, y)
-    x < TABLE_SIZE and y < TABLE_SIZE and
-    x >= 0 and y >= 0
+    x < TABLE_SIZE && y < TABLE_SIZE &&
+      x >= 0 && y >= 0
   end
 
   def robot_not_set
-    x.nil? or y.nil? or direction.nil?
+    x.nil? || y.nil? || direction.nil?
   end
 
   def north?

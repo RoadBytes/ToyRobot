@@ -1,7 +1,7 @@
-require_relative "../app/robot.rb"
+require_relative '../app/robot.rb'
 
 describe Robot do
-  describe "#report" do
+  describe '#report' do
     it "doesn't puts if `place` hasn't been called" do
       floating_robot = Robot.new
       allow(STDOUT).to receive(:puts)
@@ -11,20 +11,20 @@ describe Robot do
       expect(STDOUT).not_to have_received(:puts)
     end
 
-    it "puts coordinates from `place` call" do
+    it 'puts coordinates from `place` call' do
       placed_robot = Robot.new
       placed_robot.place(0, 1, :NORTH)
-      allow(STDOUT).to receive(:puts).with("0, 1, NORTH")
+      allow(STDOUT).to receive(:puts).with('0, 1, NORTH')
 
       placed_robot.report
 
-      expect(STDOUT).to have_received(:puts).with("0, 1, NORTH")
+      expect(STDOUT).to have_received(:puts).with('0, 1, NORTH')
     end
   end
 
-  describe "#place" do
-    context "with valid input" do
-      it "sets x, y, and direction" do
+  describe '#place' do
+    context 'with valid input' do
+      it 'sets x, y, and direction' do
         robot = Robot.new
         robot.place(0, 1, :NORTH)
 
@@ -34,8 +34,8 @@ describe Robot do
       end
     end
 
-    context "with invalid input" do
-      it "ignores commands with non-direction inputs" do
+    context 'with invalid input' do
+      it 'ignores commands with non-direction inputs' do
         robot = Robot.new
         robot.place(0, 1, :SANDWHICH)
 
@@ -44,7 +44,7 @@ describe Robot do
         expect(robot.direction).to eq nil
       end
 
-      it "ignores commands with x over bounds" do
+      it 'ignores commands with x over bounds' do
         robot = Robot.new
         robot.place(7, 0, :NORTH)
 
@@ -53,7 +53,7 @@ describe Robot do
         expect(robot.direction).to eq nil
       end
 
-      it "ignores commands with x under bounds" do
+      it 'ignores commands with x under bounds' do
         robot = Robot.new
         robot.place(-1, 0, :NORTH)
 
@@ -62,7 +62,7 @@ describe Robot do
         expect(robot.direction).to eq nil
       end
 
-      it "ignores commands with y over bounds" do
+      it 'ignores commands with y over bounds' do
         robot = Robot.new
         robot.place(0, 7, :NORTH)
 
@@ -71,7 +71,7 @@ describe Robot do
         expect(robot.direction).to eq nil
       end
 
-      it "ignores commands with y under bounds" do
+      it 'ignores commands with y under bounds' do
         robot = Robot.new
         robot.place(0, -1, :NORTH)
 
@@ -80,7 +80,7 @@ describe Robot do
         expect(robot.direction).to eq nil
       end
 
-      it "leaves x, y, and direction unchanged" do
+      it 'leaves x, y, and direction unchanged' do
         robot = Robot.new
         robot.place(0, 1, :NORTH)
 
@@ -92,8 +92,8 @@ describe Robot do
       end
     end
 
-    describe "#move" do
-      it "adds one to x when facing :EAST" do
+    describe '#move' do
+      it 'adds one to x when facing :EAST' do
         east_robot = Robot.new
         east_robot.place(1, 1, :EAST)
 
@@ -104,7 +104,7 @@ describe Robot do
         expect(east_robot.direction).to eq :EAST
       end
 
-      it "subtracts one to x when facing :WEST" do
+      it 'subtracts one to x when facing :WEST' do
         east_robot = Robot.new
         east_robot.place(1, 1, :WEST)
 
@@ -115,7 +115,7 @@ describe Robot do
         expect(east_robot.direction).to eq :WEST
       end
 
-      it "adds one to y when facing :NORTH" do
+      it 'adds one to y when facing :NORTH' do
         east_robot = Robot.new
         east_robot.place(1, 1, :NORTH)
 
@@ -126,7 +126,7 @@ describe Robot do
         expect(east_robot.direction).to eq :NORTH
       end
 
-      it "subtracts one to y when facing :SOUTH" do
+      it 'subtracts one to y when facing :SOUTH' do
         east_robot = Robot.new
         east_robot.place(1, 1, :SOUTH)
 
@@ -137,8 +137,8 @@ describe Robot do
         expect(east_robot.direction).to eq :SOUTH
       end
 
-      context "when #move is invalid" do
-        it "leaves the robot unchanged if moving out of bounds east" do
+      context 'when #move is invalid' do
+        it 'leaves the robot unchanged if moving out of bounds east' do
           east_robot = Robot.new
           east_robot.place(4, 2, :EAST)
 
@@ -149,7 +149,7 @@ describe Robot do
           expect(east_robot.direction).to eq :EAST
         end
 
-        it "leaves the robot unchanged if moving out of bounds west" do
+        it 'leaves the robot unchanged if moving out of bounds west' do
           east_robot = Robot.new
           east_robot.place(0, 2, :WEST)
 
@@ -160,7 +160,7 @@ describe Robot do
           expect(east_robot.direction).to eq :WEST
         end
 
-        it "leaves the robot unchanged if moving out of bounds north" do
+        it 'leaves the robot unchanged if moving out of bounds north' do
           east_robot = Robot.new
           east_robot.place(3, 4, :NORTH)
 
@@ -171,7 +171,7 @@ describe Robot do
           expect(east_robot.direction).to eq :NORTH
         end
 
-        it "leaves the robot unchanged if moving out of bounds south" do
+        it 'leaves the robot unchanged if moving out of bounds south' do
           east_robot = Robot.new
           east_robot.place(3, 0, :SOUTH)
 
@@ -182,7 +182,7 @@ describe Robot do
           expect(east_robot.direction).to eq :SOUTH
         end
 
-        it "leaves the robot unchanged if not on table" do
+        it 'leaves the robot unchanged if not on table' do
           floating_robot = Robot.new
 
           floating_robot.move
@@ -195,7 +195,7 @@ describe Robot do
     end
   end
 
-  describe "#left" do
+  describe '#left' do
     it "does nothing if the robot hasn't been placed" do
       floating_robot = Robot.new
       floating_robot.left
@@ -205,7 +205,7 @@ describe Robot do
       expect(floating_robot.direction).to eq nil
     end
 
-    it "changes direction from south to east" do
+    it 'changes direction from south to east' do
       floating_robot = Robot.new
       floating_robot.place(3, 2, :SOUTH)
       floating_robot.left
@@ -215,7 +215,7 @@ describe Robot do
       expect(floating_robot.direction).to eq :EAST
     end
 
-    it "changes direction from EAST to north" do
+    it 'changes direction from EAST to north' do
       floating_robot = Robot.new
       floating_robot.place(3, 2, :EAST)
       floating_robot.left
@@ -225,7 +225,7 @@ describe Robot do
       expect(floating_robot.direction).to eq :NORTH
     end
 
-    it "changes direction from north to west" do
+    it 'changes direction from north to west' do
       floating_robot = Robot.new
       floating_robot.place(3, 2, :NORTH)
       floating_robot.left
@@ -235,7 +235,7 @@ describe Robot do
       expect(floating_robot.direction).to eq :WEST
     end
 
-    it "changes direction from east to south" do
+    it 'changes direction from east to south' do
       floating_robot = Robot.new
       floating_robot.place(3, 2, :WEST)
       floating_robot.left
@@ -246,7 +246,7 @@ describe Robot do
     end
   end
 
-  describe "#right" do
+  describe '#right' do
     it "does nothing if the robot hasn't been placed" do
       floating_robot = Robot.new
       floating_robot.right
@@ -256,7 +256,7 @@ describe Robot do
       expect(floating_robot.direction).to eq nil
     end
 
-    it "changes direction from south to west" do
+    it 'changes direction from south to west' do
       floating_robot = Robot.new
       floating_robot.place(3, 2, :SOUTH)
       floating_robot.right
@@ -266,7 +266,7 @@ describe Robot do
       expect(floating_robot.direction).to eq :WEST
     end
 
-    it "changes direction from west to north" do
+    it 'changes direction from west to north' do
       floating_robot = Robot.new
       floating_robot.place(3, 2, :WEST)
       floating_robot.right
@@ -276,7 +276,7 @@ describe Robot do
       expect(floating_robot.direction).to eq :NORTH
     end
 
-    it "changes direction from north to east" do
+    it 'changes direction from north to east' do
       floating_robot = Robot.new
       floating_robot.place(3, 2, :NORTH)
       floating_robot.right
@@ -286,7 +286,7 @@ describe Robot do
       expect(floating_robot.direction).to eq :EAST
     end
 
-    it "changes direction from east to south" do
+    it 'changes direction from east to south' do
       floating_robot = Robot.new
       floating_robot.place(3, 2, :EAST)
       floating_robot.right
