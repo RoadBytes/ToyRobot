@@ -14,7 +14,7 @@ class TerminalManager
       display_instructions
 
       input = gets.chomp
-      break if input[0].casecmp 'q'
+      break if input[0] == 'q'
 
       output_results(input)
     end
@@ -38,7 +38,7 @@ class TerminalManager
   def output_results(command_string)
     system('clear')
 
-    puts '\nRobot Output:\n\n'
+    puts "\nRobot Output:\n\n"
 
     input_parser.parse(command_string)
     input_parser.run
