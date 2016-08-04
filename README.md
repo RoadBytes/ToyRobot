@@ -2,7 +2,7 @@
 
 * To try it out:
   1. copy or fork the repo
-  2. run 'ruby app/terminal_manager.rb' from the root folder
+  2. run `ruby app/terminal_manager.rb` from the root folder
 
 # For Gracious Code reviewers
 

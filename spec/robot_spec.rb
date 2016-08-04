@@ -1,4 +1,5 @@
 require_relative '../app/robot.rb'
+require_relative '../app/table.rb'
 
 describe Robot do
   describe '#report' do

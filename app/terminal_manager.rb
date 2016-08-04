@@ -1,6 +1,7 @@
 require_relative 'robot.rb'
 require_relative 'input_parser.rb'
 require_relative 'board.rb'
+require_relative 'table.rb'
 
 # Handles O/I from terminal
 class TerminalManager
