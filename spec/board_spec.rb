@@ -1,4 +1,5 @@
 require_relative '../app/robot.rb'
+require_relative '../app/table.rb'
 require_relative '../app/board.rb'
 
 describe Board do
@@ -18,7 +19,7 @@ describe Board do
                     "_ _ _ _ _\n" +
                     "_ ^ _ _ _\n" +
                     "_ _ _ _ _"
-      new_robot   = Robot.new.place(1, 1, :NORTH)
+      new_robot   = Robot.new.place(1, 1, :north)
 
       game_board = Board.new(new_robot).return_board
 
@@ -31,7 +32,7 @@ describe Board do
                     "_ _ _ _ _\n" +
                     "_ _ _ _ _\n" +
                     "_ _ _ _ _"
-      new_robot   = Robot.new.place(4, 4, :SOUTH)
+      new_robot   = Robot.new.place(4, 4, :south)
 
       game_board = Board.new(new_robot).return_board
 
@@ -41,7 +42,7 @@ describe Board do
 
   describe "#set_icon_on_board" do
     it "sets board[4][4] to 'v'" do
-      new_robot = Robot.new.place(4, 4, :SOUTH)
+      new_robot = Robot.new.place(4, 4, :south)
       board     = Board.new(new_robot)
       board.set_icon_on_board
       result    = board.board
