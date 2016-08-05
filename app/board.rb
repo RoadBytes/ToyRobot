@@ -3,10 +3,10 @@ class Board
   attr_accessor :robot, :board
 
   ICON_CONVERSION = {
-    NORTH: '^',
-    SOUTH: 'v',
-    EAST:  '>',
-    WEST:  '<'
+    north: '^',
+    south: 'v',
+    east:  '>',
+    west:  '<'
   }
 
   def initialize(robot)

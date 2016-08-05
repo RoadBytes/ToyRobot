@@ -6,7 +6,7 @@ class Robot
     @table = Table.new
   end
 
-  DIRECTIONS    = [:SOUTH, :EAST, :NORTH, :WEST].freeze
+  DIRECTIONS    = [:south, :east, :north, :west].freeze
   USER_COMMANDS = %w(place report move left right).freeze
 
   def place(x, y, direction)

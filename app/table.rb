@@ -11,13 +11,13 @@ class Table
   # rubocop:disable Metrics/PerceivedComplexity
   def move(direction)
     case direction
-    when :EAST
+    when :east
       self.x += 1 if not_on_east_edge?
-    when :WEST
+    when :west
       self.x -= 1 if not_on_west_edge?
-    when :NORTH
+    when :north
       self.y += 1 if not_on_north_edge?
-    when :SOUTH
+    when :south
       self.y -= 1 if not_on_south_edge?
     end
   end
