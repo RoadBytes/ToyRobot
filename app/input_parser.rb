@@ -10,7 +10,8 @@ class InputParser
     @commands = []
   end
 
-  def run_input
+  def run_input(input)
+    parse(input)
     while commands.any?
       command = commands.shift
       next unless VALID_COMMANDS.include? command[:command]

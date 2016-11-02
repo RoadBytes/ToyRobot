@@ -46,8 +46,7 @@ class TerminalManager
 
     puts "\nRobot Output:\n\n"
 
-    input_parser.parse(command_string)
-    input_parser.run_input
+    input_parser.run_input(command_string)
 
     puts board.return_board
     puts
