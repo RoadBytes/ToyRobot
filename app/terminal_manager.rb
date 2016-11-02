@@ -8,6 +8,7 @@ class TerminalManager
   attr_reader :input_parser, :board
   def initialize
     @robot        = Robot.new
+    # TODO: input parser doesn't need robot
     @input_parser = InputParser.new(@robot)
     @board        = Board.new(@robot)
   end
@@ -23,6 +24,8 @@ class TerminalManager
       output_results(input)
     end
   end
+
+  private
 
   def welcome_user
     system('clear')

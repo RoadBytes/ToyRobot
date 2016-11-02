@@ -5,38 +5,8 @@ class InputParser
   VALID_COMMANDS = Robot::USER_COMMANDS
 
   def initialize(robot)
-    @robot = robot
-  end
-
-  # example command:
-  #   {command: :move}
-  #   {command: :place, x: 0, y: 3, direction: :north}
-  def parse(command_input)
-    words     = command_input.downcase.split(' ')
+    @robot    = robot
     @commands = []
-
-    while words.any?
-      word      = words.shift
-      arguments = {}
-
-      if word == 'place'
-        unparsed_arguments = words.shift
-        arguments          = parse_arguments(unparsed_arguments)
-      end
-
-      command = { command: word }.merge(arguments)
-
-      @commands << command
-    end
-  end
-
-  def parse_arguments(args_string)
-    argument_array = args_string.split(',')
-    {
-      x: argument_array[0].to_i,
-      y: argument_array[1].to_i,
-      direction: argument_array[2].to_sym
-    }
   end
 
   def run_input
@@ -50,8 +20,43 @@ class InputParser
 
   private
 
+  attr_reader :robot
+
+  # example command:
+  #   {command: :move}
+  #   {command: :place, x: 0, y: 3, direction: :north}
+  def parse(command_input)
+    words = command_input.downcase.split(' ')
+
+    convert_words(words)
+  end
+
+  def convert_words(words)
+    while words.any?
+      word      = words.shift
+      arguments = {}
+
+      if word == 'place'
+        unparsed_arguments = words.shift
+        arguments          = parse_arguments(unparsed_arguments)
+      end
+
+      command = { command: word }.merge(arguments)
+      commands << command
+    end
+  end
+
+  def parse_arguments(args_string)
+    argument_array = args_string.split(',')
+    {
+      x: argument_array[0].to_i,
+      y: argument_array[1].to_i,
+      direction: argument_array[2].to_sym
+    }
+  end
+
   def execute(command)
     args = [command[:x], command[:y], command[:direction]].compact
-    @robot.send command[:command], *args
+    robot.send command[:command], *args
   end
 end

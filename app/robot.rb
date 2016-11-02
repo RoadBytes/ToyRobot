@@ -3,6 +3,15 @@ class Robot
   attr_accessor :direction, :table
 
   def initialize
+    # TODO: does a table have a robot?
+    # TODO: identify robot and move?
+    # Think about multiple robots,
+    # table can manage of robots will bump into each other
+    # Does it make sense that a parser contains a robot?
+    # Does it make sense that a table contains a robot?
+    # The code should be simple so ?'s and answers are clear
+    # ie. Have you had a Good boss or Bad boss?
+    # balance between high and low levels of abstractions
     @table = Table.new
   end
 
