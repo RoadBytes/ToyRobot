@@ -1,23 +1,20 @@
 # InputParser handles string input from user and
 # breaks it into commands for Robot
 class InputParser
-  attr_accessor :command_array
+  attr_accessor :commands
+  attr_reader   :robot
   VALID_COMMANDS = Robot::USER_COMMANDS
 
-  def initialize(robot)
-    @robot = robot
+  def initialize
+    @robot    = Robot.new
+    @commands = []
   end
 
-  def parse(command_input)
-    @command_array = command_input.downcase.split(' ')
-  end
-
-  def run
-    loop do
-      break if command_array.empty?
-
-      command = command_array.shift
-      next unless VALID_COMMANDS.include? command
+  def run_input(input)
+    parse(input)
+    while commands.any?
+      command = commands.shift
+      next unless VALID_COMMANDS.include? command[:command]
 
       execute(command)
     end
@@ -25,16 +22,41 @@ class InputParser
 
   private
 
-  def execute(command)
-    if command == 'place'
-      place_arguments = command_array.shift
-      place_arguments = place_arguments.split(',')
-      @robot.send command,
-                  place_arguments[0].to_i,
-                  place_arguments[1].to_i,
-                  place_arguments[2].upcase.to_sym
-    else
-      @robot.send command
+  # example command:
+  #   {command: :move}
+  #   {command: :place, x: 0, y: 3, direction: :north}
+  def parse(command_input)
+    words = command_input.downcase.split(' ')
+
+    convert_words(words)
+  end
+
+  def convert_words(words)
+    while words.any?
+      word      = words.shift
+      arguments = {}
+
+      if word == 'place'
+        unparsed_arguments = words.shift
+        arguments          = parse_arguments(unparsed_arguments)
+      end
+
+      command = { command: word }.merge(arguments)
+      commands << command
     end
+  end
+
+  def parse_arguments(args_string)
+    argument_array = args_string.split(',')
+    {
+      x: argument_array[0].to_i,
+      y: argument_array[1].to_i,
+      direction: argument_array[2].to_sym
+    }
+  end
+
+  def execute(command)
+    args = [command[:x], command[:y], command[:direction]].compact
+    robot.send command[:command], *args
   end
 end

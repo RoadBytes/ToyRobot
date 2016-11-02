@@ -1,3 +1,4 @@
+# handles how objects move on it
 class Table
   attr_accessor :x, :y
   TABLE_SIZE = 5
@@ -8,20 +9,18 @@ class Table
       x >= 0 && y >= 0
   end
 
-  # rubocop:disable Metrics/PerceivedComplexity
   def move(direction)
     case direction
-    when :EAST
+    when :east
       self.x += 1 if not_on_east_edge?
-    when :WEST
+    when :west
       self.x -= 1 if not_on_west_edge?
-    when :NORTH
+    when :north
       self.y += 1 if not_on_north_edge?
-    when :SOUTH
+    when :south
       self.y -= 1 if not_on_south_edge?
     end
   end
-  # rubocop:enable Metrics/PerceivedComplexity
 
   def set(x, y)
     @x = x
