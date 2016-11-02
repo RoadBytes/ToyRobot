@@ -2,10 +2,11 @@
 # breaks it into commands for Robot
 class InputParser
   attr_accessor :commands
+  attr_reader   :robot
   VALID_COMMANDS = Robot::USER_COMMANDS
 
-  def initialize(robot)
-    @robot    = robot
+  def initialize
+    @robot    = Robot.new
     @commands = []
   end
 
@@ -19,8 +20,6 @@ class InputParser
   end
 
   private
-
-  attr_reader :robot
 
   # example command:
   #   {command: :move}

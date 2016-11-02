@@ -7,10 +7,9 @@ require_relative 'table.rb'
 class TerminalManager
   attr_reader :input_parser, :board
   def initialize
-    @robot        = Robot.new
-    # TODO: input parser doesn't need robot
-    @input_parser = InputParser.new(@robot)
-    @board        = Board.new(@robot)
+    @input_parser = InputParser.new
+    robot         = @input_parser.robot
+    @board        = Board.new(robot)
   end
 
   def play

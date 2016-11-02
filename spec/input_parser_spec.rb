@@ -36,10 +36,20 @@ describe InputParser do
   #     ]
   #   end
   # end
+  #
+  describe '::new' do
+    it 'sends ::new to Robot' do
+      allow(Robot).to receive(:new)
+
+      InputParser.new
+
+      expect(Robot).to have_received(:new)
+    end
+  end
 
   describe '#run_input' do
     it 'executes a command_hash on a Robot' do
-      parser           = InputParser.new(Robot.new)
+      parser           = InputParser.new
       one_command_hash = [
         { command: 'place', x: 0, y: 0, direction: :north },
         { command: 'move' }, { command: 'report' }
