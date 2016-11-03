@@ -13,6 +13,31 @@ describe InputParser do
     end
   end
 
+  describe "#parse(command_input)" do
+    it "splits on spaces" do
+      input  = "  left    right    "
+      parser = InputParser.new
+
+      parser.parse(input)
+
+      expect(parser.commands).to eq [{:command=>"left"}, {:command=>"right"}]
+    end
+
+    it "ignores commands that aren't key words" do
+      USER_COMMANDS = %w(place report move left right).freeze
+      input  = "  left    right   place 1,2,3 ignoreme  report "
+      parser = InputParser.new
+
+      parser.parse(input)
+
+      expect(parser.commands).to eq [{:command=>"left"},
+                                     {:command=>"right"},
+                                     {:command=>"place",
+                                      :x=>1, :y=>2, :direction=>:"3"},
+                                     {:command=>"report"}]
+    end
+  end
+
   describe '#run_input' do
     it 'executes a command string on a Robot' do
       parser = InputParser.new

@@ -18,11 +18,11 @@ class Robot
   DIRECTIONS    = [:south, :east, :north, :west].freeze
   USER_COMMANDS = %w(place report move left right).freeze
 
-  def place(x, y, direction)
-    return self unless DIRECTIONS.include? direction
+  def place(x = nil, y = nil, direction = nil)
+    return self unless (DIRECTIONS.include? direction) || direction.nil?
     return self unless coordinates_in_bounds(x, y)
     table.set(x, y)
-    @direction = direction
+    self.direction = direction
     self
   end
 

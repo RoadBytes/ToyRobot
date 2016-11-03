@@ -15,7 +15,7 @@ _ _ _ _ _
 input 'q' to quit or input a command for your robot
 PLACE (1-5 X-coor), (1-5 Y-coor), (north, south, east, west Direction):
         place robot on coordinates facing Direction
-        Erroneous input will remove the robot from the table
+        Erroneous input will be ignored
 MOVE:   go one direction forward
 LEFT:   turn left
 RIGHT:  turn right
@@ -26,9 +26,11 @@ REPORT: display your location and direction
 
 > PLACE (1-5 X-coor), (1-5 Y-coor), (north, south, east, west Direction):
 >         place robot on coordinates facing Direction
+          Erroneous input will be ignored
 
 * valid examples: "`place 1,3,east`" and  "`place 2,5,north`"
 * invalid examples: "`place 3,east`", "`place 2,5,norf`"
+  * this will be ignored
 
 > MOVE:   go one direction forward
 
@@ -111,7 +113,7 @@ output will be printed on the terminal screen with the robot represented by:
 
 # DESIGN
 
-TODO: coming soon.
+![design of application](/app/images/design.jpg)
 
 ---
 
