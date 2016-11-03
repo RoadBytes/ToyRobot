@@ -1,8 +1,119 @@
 # ToyRobot!
 
+The **MOST Amazing** game to hit consoles near you.
+
+
+```
+Robot Output:
+
+_ _ _ _ _
+_ _ _ _ _
+_ _ _ _ _
+_ < _ _ _
+_ _ _ _ _
+
+input 'q' to quit or input a command for your robot
+PLACE (1-5 X-coor), (1-5 Y-coor), (north, south, east, west Direction):
+        place robot on coordinates facing Direction
+        Erroneous input will remove the robot from the table
+MOVE:   go one direction forward
+LEFT:   turn left
+RIGHT:  turn right
+REPORT: display your location and direction
+```
+
+## Commands description
+
+> PLACE (1-5 X-coor), (1-5 Y-coor), (north, south, east, west Direction):
+>         place robot on coordinates facing Direction
+
+* valid examples: "`place 1,3,east`" and  "`place 2,5,north`"
+* invalid examples: "`place 3,east`", "`place 2,5,norf`"
+
+> MOVE:   go one direction forward
+
+* example: "`move`"
+
+> LEFT:   turn left
+
+* example: "`left`"
+
+> RIGHT:  turn right
+
+* example: "`right`"
+
 * To try it out:
   1. copy or fork the repo
   2. run `ruby app/terminal_manager.rb` from the root folder
+
+  see: APPLICATION INSTALLATION INSTRUCTIONS for more details
+
+---
+
+# ENVIRONMENTS
+
+* This application was developed on: Mac OS X 10.10.5
+
+---
+
+# SYSTEM DEPENDENCIES & CONFIGURATION
+
+* ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin14]
+
+---
+
+# APPLICATION INSTALLATION INSTRUCTIONS
+
+## To install application:
+
+### From your terminal
+
+* `git clone https://github.com/RoadBytes/ToyRobot.git`
+* `cd ToyRobot`
+* `bundle install`
+* `ruby app/terminal_manager.rb`
+
+---
+
+# TESTING INSTRUCTIONS
+
+### From the root folder `ToyRobot`
+
+* run: `rspec spec`
+
+---
+
+# OVERVIEW
+
+## The application is designed to reads strings from $stdin and prints out the current state of a board to $stdout.
+
+* You can input several commands at once by using enter `<enter>`:
+
+`place 1,2,north left move right move move <enter>`
+
+or just one at a time:
+
+`place 1,2,south <enter> left <enter> move <enter> right <enter> move <enter> move <enter>`
+
+* the state of the board is output with every `<enter>`
+
+## INPUT FORMAT
+
+input passed into the program are expected to be separated by spaces
+
+## OUTPUT FORMAT
+
+output will be printed on the terminal screen with the robot represented by:
+
+* `v, <, >, ^` depending on where it's facing
+
+---
+
+# DESIGN
+
+TODO: coming soon.
+
+---
 
 # For Gracious Code reviewers
 
