@@ -33,7 +33,7 @@ class TerminalManager
 
   def display_instructions
     puts "input 'q' to quit or input a command for your robot"
-    puts 'PLACE (1-5 X-coor), (1-5 Y-coor),' \
+    puts 'PLACE (0-4 X-coor), (0-4 Y-coor),' \
          '(north, south, east, west Direction):'
     puts '        place robot on coordinates facing Direction'
     puts '        Erroneous input will be ignored'

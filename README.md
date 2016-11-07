@@ -13,7 +13,7 @@ _ < _ _ _
 _ _ _ _ _
 
 input 'q' to quit or input a command for your robot
-PLACE (1-5 X-coor), (1-5 Y-coor), (north, south, east, west Direction):
+PLACE (0-4 X-coor), (0-4 Y-coor), (north, south, east, west Direction):
         place robot on coordinates facing Direction
         Erroneous input will be ignored
 MOVE:   go one direction forward
@@ -24,7 +24,7 @@ REPORT: display your location and direction
 
 ## Commands description
 
-> PLACE (1-5 X-coor), (1-5 Y-coor), (north, south, east, west Direction):
+> PLACE (0-4 X-coor), (0-4 Y-coor), (north, south, east, west Direction):
 >         place robot on coordinates facing Direction
           Erroneous input will be ignored
 
