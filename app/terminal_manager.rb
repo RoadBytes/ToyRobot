@@ -33,9 +33,10 @@ class TerminalManager
 
   def display_instructions
     puts "input 'q' to quit or input a command for your robot"
-    puts 'PLACE (1-5 X-coor), (1-5 Y-coor), (north, south, east, west Direction):'
+    puts 'PLACE (1-5 X-coor), (1-5 Y-coor),' \
+         '(north, south, east, west Direction):'
     puts '        place robot on coordinates facing Direction'
-    puts '        Erroneous input will remove the robot from the table'
+    puts '        Erroneous input will be ignored'
     puts 'MOVE:   go one direction forward'
     puts 'LEFT:   turn left'
     puts 'RIGHT:  turn right'

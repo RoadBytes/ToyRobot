@@ -14,13 +14,10 @@ class InputParser
     parse(input)
     while commands.any?
       command = commands.shift
-      next unless VALID_COMMANDS.include? command[:command]
 
       execute(command)
     end
   end
-
-  private
 
   # example command:
   #   {command: :move}
@@ -31,27 +28,31 @@ class InputParser
     convert_words(words)
   end
 
+  private
+
   def convert_words(words)
     while words.any?
       word      = words.shift
       arguments = {}
 
-      if word == 'place'
-        unparsed_arguments = words.shift
-        arguments          = parse_arguments(unparsed_arguments)
-      end
+      arguments = parse_arguments(words) if word == 'place'
 
       command = { command: word }.merge(arguments)
+      next unless VALID_COMMANDS.include? command[:command]
+
       commands << command
     end
   end
 
-  def parse_arguments(args_string)
+  def parse_arguments(words)
+    args_string = words.shift
+    return {} if args_string.nil?
+
     argument_array = args_string.split(',')
     {
       x: argument_array[0].to_i,
       y: argument_array[1].to_i,
-      direction: argument_array[2].to_sym
+      direction: argument_array.fetch(2, '').to_sym
     }
   end
 

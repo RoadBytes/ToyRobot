@@ -91,6 +91,17 @@ describe Robot do
         expect(robot.y).to eq 1
         expect(robot.direction).to eq :north
       end
+
+      it 'leaves robot unchanged when missing args' do
+        robot = Robot.new
+        robot.place(0, 1, :north)
+
+        robot.place
+
+        expect(robot.x).to eq 0
+        expect(robot.y).to eq 1
+        expect(robot.direction).to eq :north
+      end
     end
 
     describe '#move' do
