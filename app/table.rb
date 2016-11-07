@@ -5,6 +5,7 @@ class Table
   # (0, 0) south west most corner of square table
 
   def coordinates_in_bounds(x, y)
+    return if x.nil? || y.nil?
     x < TABLE_SIZE && y < TABLE_SIZE &&
       x >= 0 && y >= 0
   end
